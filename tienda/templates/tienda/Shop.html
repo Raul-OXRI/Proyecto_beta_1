@@ -4,11 +4,46 @@
 
 {% block content %}
 
-<h1 style="color:aliceblue">Tienda</h1>
+<div class="container">
+    <div style="float:right;">
+        {% if request.user.is_authenticated %}
 
-<div>
-    <p></p>
+            {% include "carro/widget.html" %}
+        
+        {% else %}
+            <div class="alert alert-danger text-center">
+                HACER LOGIN!!!!!!!!!!!!!!!
+            </div>  
+        {% endif %}
+    </div>
+    <div class="row">
+    
+        <!-- INICIO DEL FOR  -->
+        {% for producto in productos %}
+            <div class="col-md-3 ">
+                <!--        BOOTSTRAP GRIP      -->
+                <div class="card" style="width: 100%; margin: 5px;">
+                    <img src="{{producto.imagen.url}}" class="card-img-top">
+                    <div class="card-boby" style="text-align: center;">
+                        <!--    SE AGREGA  EL DESCRICION   -->
+                        <h7 class="card-title">
+                            {{producto.nombre}}
+                        </h7>
+                        <!--    SE AGREGA  EL PRECIO   -->
+                        <p class="card-text">
+                            Q&nbsp;{{producto.precio}} 
+                        </p>
+                    </div>
+
+                    <!--        AGREGAMOS LO QUE SERIA EL BOTON ABAJO DEL PRECIO        -->
+                    <div class="card-footer text-center">
+                        <a href="{% url 'carro:agregar' producto.id %}" class="btn btn-success">Agregar al carro</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+      <!-- FINAL DEL FOR  -->
+
+    </div>
 </div>
-
-
 {% endblock %}

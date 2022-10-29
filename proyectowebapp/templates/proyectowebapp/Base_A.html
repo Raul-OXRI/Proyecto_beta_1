@@ -23,6 +23,19 @@
       
         <span class="site-heading-lower">Gestión de Pedidos</span>
       </h1>
+      
+      <div style="text-align: right; margin-right: 100px; color: aliceblue;">
+        {% if user.is_authenticated %}
+          Hola {{ user.username }} &nbsp;&nbsp; <a href="{% url 'cerrar_sesion' %}" style="color:aliceblue ;">Cerrar sesion</a>
+
+        {% else %}
+          <a href="{% url 'logear' %}" style="color:aliceblue ;">
+            Login
+          </a>
+          &nbsp; &nbsp;
+          <a href="{% url 'Autenticacion' %}" style="color:aliceblue ;">Registrate</a>
+        {% endif %}
+      </div>
 
 
 

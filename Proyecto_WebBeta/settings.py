@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 
+from django.contrib.messages import constants as mesajes_de_error
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -42,6 +44,10 @@ INSTALLED_APPS = [
     'blog',
     'tienda',
     'contacto',
+    'carro',
+    'auteticacion',
+    'crispy_forms',
+    'pedidos',
 ]
 
 MIDDLEWARE = [
@@ -67,6 +73,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'carro.context_processor.importe_total_carro',
             ],
         },
     },
@@ -133,3 +140,32 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+#hwtphiwxvoryhpkg
+#Configuracion de correo 
+
+#---------------------------------------------------------------------------------------------
+#       APARTADO PARA LO QUE ES EL CONFIGURACION DE COREO ELETRONICO
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "jose.botzoc.30@gmail.com"
+EMAIL_HOST_PASSWORD = "zurowmggvzpvriqj"
+
+#---------------------------------------------------------------------------------------------
+#       CARGA DE BOOTSSTRAP
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+#---------------------------------------------------------------------------------------------
+#       PARA LOS MENSAJES DE ERROR
+
+MESSAGE_TAGS ={
+    mesajes_de_error.DEBUG: 'debug',
+    mesajes_de_error.INFO: 'info',
+    mesajes_de_error.SUCCESS: 'success',
+    mesajes_de_error.WARNING: 'warning',
+    mesajes_de_error.ERROR: 'danger',
+}

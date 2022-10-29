@@ -4,15 +4,29 @@
 
 {% block content %}
 
+<!--   INICIO    -->
+
 <div class="contenedorFormulario">
-    <form action="" method="post" style="text-align: center;">
+
+    <!--        CHACEMOS UNA VALIDACION SI SE MANDA LA INFO A LO QUE ES EL POST     -->
+    
+    {% if "valido" in request.GET %}
+        <p style="color:antiquewhite ;">
+            Informacion enviada correctamente, Gracias
+        </p>
+    {% endif %}
+
+    <!--        ESTE ES EL APARTADO DE DISEÑO DE PAGINA     -->
+    <form action="" method="POST" style="text-align:center;">
         {% csrf_token %}
-        <table style="color:antiquewhite; margin: 20px auto;">
+        <table style="color:antiquewhite;margin: 20px auto;">
             {{miFormulario.as_table}}
         </table>
-        <input type="submit" value="Enviar"  style="width: 150px;">
+        <input type="submit" value="Enviar" style="width: 150px;">
     </form>
+    
 </div>
 
+<!--    FINAL   -->
 
 {% endblock %}
